@@ -1,0 +1,16 @@
+<div class="col-md-3">
+	<div class="thumbnail">
+		<%= link_to user_path(user.username) do %>
+			<%= image_tag gravatar_url(user.email, 600), alt: "" %>
+		<% end %>
+		<div class="caption">
+			<h3><%= user.username %></h3>
+			<% if current_user.friendship_status(user) == "requested" %>
+				<p><%= link_to "Accept", accept_friendship_path(current_user.friendship_relation(user)), method: :put %> <%= friend_buttons(user) %></p>
+			<% else %>
+				<p><%= friend_buttons(user) %></p>
+			<% end %>
+		</div>
+ 	</div>
+</div>
+
